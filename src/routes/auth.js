@@ -96,7 +96,6 @@ router.post("/login", (req, res) => { // Changed POST to GET to match your URL q
     bcrypt.compare(password, user.password, (err, result) => {
       if (result) {
         // Corrected: Use the user ID from the database
-        console.log(process.env.SECRET_KEY);
         const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY, { expiresIn: "1h" });
 
         res.send(`
